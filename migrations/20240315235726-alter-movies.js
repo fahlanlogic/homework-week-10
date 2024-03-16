@@ -1,37 +1,18 @@
 "use strict";
 
-const { DataTypes } = require("sequelize");
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		await queryInterface.changeColumn("movies", "id", {
-			type: DataTypes.INTEGER,
-			primaryKey: true,
-			autoIncrement: true,
-		});
+		await queryInterface.bulkDelete("movies", { title: "test123" });
+
+		await queryInterface.sequelize.query(
+			"ALTER SEQUENCE movies_id_seq RESTART WITH 100;"
+		);
 
 		await queryInterface.changeColumn("movies", "photo", {
-			type: DataTypes.TEXT,
-		});
-
-		await queryInterface.addColumn("movies", "date_created", {
-			type: DataTypes.DATE,
-			allowNull: false,
-		});
-
-		await queryInterface.addColumn("movies", "date_updated", {
-			type: DataTypes.DATE,
-			allowNull: false,
+			type: Sequelize.TEXT,
 		});
 	},
 
-	async down(queryInterface, Sequelize) {
-		/**
-		 * Add reverting commands here.
-		 *
-		 * Example:
-		 * await queryInterface.dropTable('users');
-		 */
-	},
+	async down(queryInterface, Sequelize) {},
 };

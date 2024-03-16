@@ -19,15 +19,11 @@ module.exports = (sequelize, DataTypes) => {
 			genres: DataTypes.STRING,
 			year: DataTypes.STRING,
 			photo: DataTypes.CHAR,
-			// date_created: DataTypes.DATE,
-			// date_updated: DataTypes.DATE,
 		},
 		{
 			sequelize,
 			modelName: "Movie",
 			tableName: "movies",
-			// createdAt: "date_created",
-			// updatedAt: "date_updated",
 			timestamps: false,
 		}
 	);

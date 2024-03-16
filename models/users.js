@@ -16,18 +16,14 @@ module.exports = (sequelize, DataTypes) => {
 				autoIncrement: true,
 			},
 			email: DataTypes.STRING,
-			password: DataTypes.STRING(1234),
+			password: DataTypes.STRING,
 			role: DataTypes.STRING,
 			gender: DataTypes.STRING,
-			date_created: DataTypes.DATE,
-			date_updated: DataTypes.DATE,
 		},
 		{
 			sequelize,
 			modelName: "User",
 			tableName: "users",
-			createdAt: "date_created",
-			updatedAt: "date_updated",
 			timestamps: false,
 		}
 	);

@@ -1,2 +1,5 @@
 node_modules
 .env
+uploads
+movies-database.sql
+.DS_Store

@@ -7,6 +7,7 @@ const config = {
 		database: process.env.DB_NAME,
 		host: "localhost",
 		dialect: "postgres",
+		dialectModule: require("pg"),
 	},
 };
 
