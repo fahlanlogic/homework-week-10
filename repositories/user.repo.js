@@ -27,6 +27,22 @@ class UserRepo {
 			throw error;
 		}
 	};
+
+	static update = async (id, body) => {
+		try {
+			const user = await User.findOne({ where: { id } });
+			await user.update(body);
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	static destroy = async id => {
+		try {
+			const user = await User.findOne({ where: { id } });
+			await user.destroy();
+		} catch (error) {}
+	};
 }
 
 module.exports = UserRepo;

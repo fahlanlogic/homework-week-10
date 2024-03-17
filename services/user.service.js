@@ -4,7 +4,7 @@ const { User } = require("../models");
 class UserServices {
 	static findAll = async () => {
 		try {
-			const users = await UserRepos.findAll();
+			const users = await UserRepo.findAll();
 			return users;
 		} catch (error) {
 			throw error;
@@ -13,7 +13,7 @@ class UserServices {
 
 	static findOne = async id => {
 		try {
-			const user = await UserRepos.findOne({ where: { id } });
+			const user = await UserRepo.findOne({ where: { id } });
 			if (!user) throw { code: 404 };
 			return user;
 		} catch (error) {
@@ -39,6 +39,29 @@ class UserServices {
 			});
 
 			return user;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	static update = async params => {
+		try {
+			const { id, body } = params;
+			const user = await UserRepo.findOne({ where: { id } });
+			if (!user) throw { code: 404 };
+			if (!body.email || !body.password || !body.role)
+				throw { code: 400 };
+			await UserRepo.update(id, body);
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	static destroy = async id => {
+		try {
+			const user = await UserRepo.findOne({ where: { id } });
+			if (!user) throw { code: 404 };
+			await UserRepo.destroy(id);
 		} catch (error) {
 			throw error;
 		}

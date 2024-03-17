@@ -27,6 +27,28 @@ class UserControllers {
 			next(error);
 		}
 	};
+
+	static update = async (req, res, next) => {
+		try {
+			const params = {
+				id: req.params.id,
+				body: req.body,
+			};
+			await UserServices.update(params);
+			res.json({ message: "User updated", data: params.body });
+		} catch (error) {
+			next(error);
+		}
+	};
+
+	static destroy = async (req, res, next) => {
+		try {
+			await UserServices.destroy(req.params.id);
+			res.json({ message: "User deleted" });
+		} catch (error) {
+			next(error);
+		}
+	};
 }
 
 module.exports = UserControllers;

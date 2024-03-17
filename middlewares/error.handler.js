@@ -5,7 +5,7 @@ const errorHandler = (err, req, res, next) => {
 			message: "Bad Request, check your request body!",
 		});
 	} else if (err.code == 409) {
-		res.status(404).json({ message: "Movie already exists" });
+		res.status(404).json({ message: "Already exists" });
 	} else if (err.code == 404) {
 		res.status(404).json({ message: "Not Found!" });
 	} else {
